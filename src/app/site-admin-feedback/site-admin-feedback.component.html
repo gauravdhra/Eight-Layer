@@ -1,0 +1,104 @@
+<app-site-admin-side></app-site-admin-side>
+<div *ngIf="showSpinner">
+        <app-loading-spinner></app-loading-spinner>
+  </div>
+<!-- MAIN PANEL -->
+<div id="main" role="main">
+  <!-- MAIN CONTENT -->
+  <!-- <button id="feedbackMessage" title="Edit Enterprise" style="display: none" data-toggle="modal" data-target="#enterpriseEdit"></button> -->
+  <div id="content">
+      <div class="row">
+          <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+              <h1 class="page-title txt-color-blueDark"><i class="fa-fw fa fa-comment"></i> Feedback</h1>
+          </div>
+      </div>
+      <section>
+          <!-- row -->
+          <div class="row">
+              <section>
+                    <!-- row -->
+                    <div class="row">
+                        <!-- NEW WIDGET START -->
+                        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <!-- widget content -->
+                            <div class="widget-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="black-trans-box">
+                                            <h3 class="feedback-title">Feedback Form</h3>
+                                            <div class="row">
+                                                <form [formGroup]="userForm" (ngSubmit)="feedbackSubmit()">
+                                                    <div formGroupName="fullName">
+                                                            <div class="col-md-12 col-sm-12">
+                                                                    <div class="form-group" style="width: 50%">
+                                                                            <label>*Name</label>
+                                                                            <input type="text" formControlName="name" class="form-control" placeholder="Name">
+                                                                    </div>
+                                                                </div>
+                                                       
+                                                    </div>
+                                                        
+                                                    <div class="col-md-12 col-sm-12">
+                                                            <div class="form-group" style="width: 50%">
+                                                                    <label>*Email</label>
+                                                                    <input type="email" formControlName="email_id" class="form-control" placeholder="Email" >
+                                                                    <div class="redMessage" *ngIf="userForm.get('email_id').hasError('pattern')">
+                                                                            *Please enter valid email pattern example: abc@xyz.com
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div formGroupName="fullName">
+                                                            <div class="col-md-12 col-sm-12">
+                                                                <div class="form-group" style="width: 50%">
+                                                                        <label>*Feedback</label>
+                                                                        <textarea class="form-control" placeholder="comment..." formControlName="feedback"></textarea>
+                                                                        <!-- <div class="redMessage" *ngIf="userForm.get('feedback').hasError('pattern')">
+                                                                                *Its require
+                                                                    </div> -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                          
+                                                    <div class="m-t-10 text-right btn-group-box">
+                                                            <button (click) = "feedbackSubmit()" [disabled]='!userForm.valid || distest' type="button" class="btn btn-labeled btn-primary">
+                                                                    <span class="btn-label">
+                                                                        <i class="fa fa-floppy-o"></i>
+                                                                    </span>Submit
+                                                                </button>
+                                                    </div>
+                                                </form> 
+                                            </div>
+                                                <div [class.showDiv]="isSuccess" class="ValidationMessage alert alert-success">
+                                                    <strong>Thank you for your feedback.  Your feedback was successfully submitted</strong>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <!-- end widget content -->
+                        </article>
+                        <!-- WIDGET END -->
+                    </div>
+                    <!-- end row -->
+                </section>
+              <!-- WIDGET END -->
+          </div>
+          <!-- end row -->
+      </section>
+
+  </div>
+  <!-- END MAIN CONTENT -->
+</div>
+<!-- END MAIN PANEL -->
+
+<!-- <div id="enterpriseEdit" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <span style="font-size: 23px">Saved successfully</span>
+            </div>
+        </div>
+    </div>
+</div> -->

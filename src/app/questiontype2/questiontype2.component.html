@@ -1,0 +1,184 @@
+<app-child-component></app-child-component>
+<div *ngIf="showSpinner">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<!-- MAIN PANEL -->
+<div id="main" role="main">
+  <!-- MAIN CONTENT -->
+  <div id="content">
+    <div class="row">
+      <label>Select Question Type</label>
+      <div class="selectType">
+        <select (change)="selectchangeforType($event.target.value)" class="form-control typesSelect">
+          <option>Please Select</option>
+          <option value="1">Type 1</option>
+          <option value="2">Type 2</option>
+          <!-- <option value="3">Type 3</option> -->
+        </select>
+      </div>
+      <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+        <h1 class="page-title txt-color-blueDark">
+          <i class="fa-fw fa fa-file-o"></i> Type 2</h1>
+      </div>
+    </div>
+    <section>
+      <!-- row -->
+      <div class="row">
+        <!-- NEW WIDGET START -->
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <!-- widget content -->
+          <div class="widget-body">
+            <div class="form padding-10">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="black-trans-box">
+                    <div class="row">
+
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12 clearfix">
+
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-xs-12">
+                              <div class="margin-20">
+                                <h4>Add Question</h4>
+                                <br>
+                              </div>
+                              <form class="type1Form" [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)">
+                                <div class="form-group">
+                                  <label>Question</label>
+                                  <input type="text" class="form-control" formControlName="question"
+                                         [(ngModel)]="validationOfQuestion">
+
+
+                                </div>
+                                <!--addresses-->
+                                <div formArrayName="question_options_array">
+                                  <div
+                                    *ngFor="let address of myForm.controls.question_options_array.controls; let i=index let j=index"
+                                    class="panel">
+
+                                    <div [formGroupName]="i">
+                                      <!-- <div class="form-group col-xs-6"> -->
+                                      <label>Option-{{i + 1}}</label> &nbsp;
+                                      <i style="cursor:pointer;" (click)="removeAddress(i)" class="fa fa-trash"
+                                         aria-hidden="true"></i>
+
+                                      <!-- <input class="SelectAnswer" formControlName="answer" type="checkbox" name="answer" value="answer"> -->
+                                      <!-- <input type="text"  class="form-control" [(ngModel)]="self['answer'+i]" formControlName="name"> -->
+                                      <input type="text" class="form-control" formControlName="name" #j>
+
+                                      <label class="selectAnswer">Answer</label> &nbsp;
+                                      <input type="checkbox" name="answer"
+                                             value="Answer" (click)="getAnswer(j.value, i)">
+
+
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="margin-20">
+                                  <button type="button" (click)="addAddress()" style="cursor: pointer"
+                                          class="btn btn-labeled btn-primary bg-color-green">
+                                    <i class="fa fa-plus"></i>
+                                  </button>
+                                  <br>
+                                  <br>
+                                  <label>inspired By</label>
+                                  <input type="text" class="form-control" formControlName="inspired_by">
+                                  <input type="hidden" [(ngModel)]="currentType" class="form-control"
+                                         [ngModelOptions]="{standalone: true}">
+
+                                  <label>question Level</label>
+                                  <input type="number" class="form-control" formControlName="question_level">
+
+                                  <label>Answer Explaination</label>
+                                  <textarea formControlName="question_insights" class="form-control"></textarea>
+                                  <!-- <a (click)="addAddress()" style="cursor: default">
+                                    Add another address +
+                                  </a> -->
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="m-t-10 text-right btn-group-box">
+
+                    <button type="button" (click)="saveQuestion(myForm.value)"
+                            class="btn btn-labeled btn-primary bg-color-blueLight">
+                                            <span class="btn-label">
+                                                <i class="fa fa-save"></i>
+                                            </span>Save
+                    </button>
+                    <a href="javascript:void(0);" (click)="onQuestionView()"
+                       class="btn btn-labeled btn-primary bg-color-blueLight"><span class="btn-label">
+                                                <i class="fa fa-eye"></i>
+                                            </span>View</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <!-- end widget content -->
+        </article>
+        <!-- WIDGET END -->
+      </div>
+      <!-- end row -->
+    </section>
+
+  </div>
+  <!-- END MAIN CONTENT -->
+</div>
+<!-- END MAIN PANEL -->
+
+<div id="questionViewPopup" class="modal fade" role="dialog">
+
+  <div class="modal-dialog modal-md">
+
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" (click)="closeDialog()" class="close">&times;</button>
+        <h4 class="modal-title">Question View</h4>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="black-trans-box">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Question</label>
+                  <input readonly type="text" [(ngModel)]="validationOfQuestion" class="form-control"/>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Answer</label>
+                    <div *ngFor="let ans of queValue">
+                      <input type="checkbox" value="i"> {{ans.name}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <button type="button" class="btn btn-labeled btn-danger bg-color-redLight pull-right" style="margin: 8px;" (click)="closeDialog()"><span
+            class="btn-label"><i class="fa fa-close" style="color:white"></i></span>Close
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+
+</div>

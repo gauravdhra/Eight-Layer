@@ -1,0 +1,101 @@
+<app-site-admin-side></app-site-admin-side>
+<div *ngIf="showSpinner">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<!-- MAIN PANEL -->
+<div id="main" role="main">
+  <!-- MAIN CONTENT -->
+  <div id="content">
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+        <h1 class="page-title txt-color-blueDark"><i class="fa-fw fa fa-home"></i> Home</h1>
+      </div>
+
+    </div>
+
+    <section>
+      <div class="row">
+        <div class="col-md-6 col-lg-5">
+          <div class="row">
+            <div class="col-md-12">
+              <div style="padding: 5px" class="black-trans-box text-center">
+                <div class="label-lg">
+                  Total Users
+                </div>
+                <div *ngIf="graphData" class="cercle-count">
+                  {{graphData.data.totalusers}}
+                </div>
+              </div>
+            </div>
+            <div style="margin-top: 38px;" class="col-md-12">
+              <div style="padding: 5px" class="black-trans-box text-center">
+                <div class="label-lg">
+                  Active Users
+                </div>
+                <div *ngIf="graphData" class="cercle-count">
+                  {{graphData.data.activeusers}}
+                </div>
+              </div>
+            </div>
+            <!-- <div class="col-md-12 m-t-30">
+                <div class="black-trans-box">
+                    <div class="label-lg">
+                        User Activity Level
+                    </div>
+                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                </div>
+            </div> -->
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-7">
+          <!-- Widget ID (each widget will need unique ID)-->
+          <div class="black-trans-box">
+            <span class="label-lg">User Trend</span>
+            <!-- widget content -->
+            <div class="widget-body no-padding">
+              <div id="sin-chart" class="chart has-legend">
+
+
+                <!-- <div class="row"> -->
+                <!-- <div class="col-md-12"> -->
+                <!-- <div style="display: block;"> -->
+                <canvas baseChart width="200"
+                        [datasets]="lineChartData"
+                        [labels]="lineChartLabels"
+                        [options]="lineChartOptions"
+                        [colors]="lineChartColors"
+                        [legend]="lineChartLegend"
+                        [chartType]="lineChartType"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)">
+                </canvas>
+                <!-- </div> -->
+                <!-- </div> -->
+                <!-- <div class="col-md-6" style="margin-bottom: 10px"> -->
+                <!-- <table class="table table-responsive table-condensed">
+                  <tr>
+                    <th *ngFor="let label of lineChartLabels">{{label}}</th>
+                  </tr>
+                  <tr *ngFor="let d of lineChartData">
+                    <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
+                  </tr>
+                </table> -->
+                <!-- <button (click)="randomize()">CLICK</button> -->
+                <!-- </div> -->
+                <!-- </div> -->
+
+
+              </div>
+            </div>
+            <!-- end widget content -->
+          </div>
+          <!-- end widget -->
+        </div>
+      </div>
+    </section>
+
+  </div>
+  <!-- END MAIN CONTENT -->
+</div>
+<!-- END MAIN PANEL -->

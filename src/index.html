@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>EightLayer</title>
+  <base href="./">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<!-- Basic Styles -->
+<link rel="stylesheet" type="text/css" media="screen" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="assets/css/font-awesome.min.css">
+
+<!-- SmartAdmin Styles : Caution! DO NOT change the order -->
+<link rel="stylesheet" type="text/css" media="screen" href="assets/css/production-plugins.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="assets/css/production.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="assets/css/skins.min.css">
+
+<!-- SmartAdmin RTL Support  -->
+<link rel="stylesheet" type="text/css" media="screen" href="assets/css/rtl.min.css">
+
+<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
+<link rel="stylesheet" type="text/css" media="screen" href="assets/css/custom.css">
+
+<!-- FAVICONS -->
+<link rel="shortcut icon" href="assets/img/favicon/favicon.ico" type="image/x-icon">
+<link rel="icon" href="assets/img/favicon/favicon.ico" type="image/x-icon">
+
+<!-- GOOGLE FONT -->
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+
+<!-- js -->
+
+  <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+  <!-- <script src="assets/custom-js/bootstrap/jquery.min.js"></script> -->
+  <script>
+
+  window.$ = window.jQuery = require("./assets/js/bootstrap/jquery.min.js");
+  // window.fs = require('fs');myData
+  var remote = require('electron').remote,
+      arguments = remote.getGlobal('sharedObject').prop1;
+     localStorage.setItem("basePath", arguments);
+     console.log("arguments = ", arguments.replace("eightLayer.exe","EightLayer.json"));
+     localStorage.setItem("ExePath", arguments.replace("eightLayer.exe","EightLayer.json"));
+    console.log("arguments = ",arguments);
+  // const ipc = electron.ipcRenderer;
+
+  </script>
+  <script>
+const fs = require('fs');
+          </script>
+  <script src="assets/renderer.js"></script>
+  <script src="assets/updater.js"></script>
+  <script src="assets/custom-js/bootstrap/jquery.min.js"></script>
+  <script src="assets/js/bootstrap/bootstrap.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
+  <!-- IMPORTANT: APP CONFIG -->
+  <script src="assets/js/app.config.js"></script>
+  <script src="assets/notification.js"></script>
+  <!-- BOOTSTRAP JS -->
+
+  <!-- CUSTOM NOTIFICATION -->
+  <script src="assets/js/notification/SmartNotification.min.js"></script>
+
+  <!-- JARVIS WIDGETS -->
+  <script src="assets/js/smartwidgets/jarvis.widget.min.js"></script>
+
+  <!-- SPARKLINES -->
+  <script src="assets/js/plugin/sparkline/jquery.sparkline.min.js"></script>
+
+  <!-- JQUERY SELECT2 INPUT -->
+  <script src="assets/js/plugin/select2/select2.min.js"></script>
+
+  <!-- JQUERY UI + Bootstrap Slider -->
+  <script src="assets/js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
+
+  <!-- browser msie issue fix -->
+  <script src="assets/js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
+
+  <!-- FastClick: For mobile devices -->
+  <script src="assets/js/plugin/fastclick/fastclick.min.js"></script>
+
+  <script src="assets/js/lodash.min.js"></script>
+
+
+  <!-- MAIN APP JS FILE -->
+  <script src="assets/js/app.min.js"></script>
+
+  <script src="assets/js/custom.js"></script>
+  <script>
+    history.pushState({},"entry page",location.hash.substring(2));
+  </script>
+  </head>
+  <body class="smart-style-5">
+
+      <!-- <button id="writeData">new file creation</button> -->
+    <app-root>Loading......</app-root>
+      <div class="messages-container"></div>
+      <h1>Auto Updater Example</h1>
+      We are using Node.js <script>document.write(process.versions.node)</script>,
+      Chromium <script>document.write(process.versions.chrome)</script>,
+      and Electron <script>document.write(process.versions.electron)</script>.
+        </body>
+<!--<script>-->
+  <!--// console.log('I am updated');-->
+  <!--// Listen for messages-->
+  <!--const { ipcRenderer } = require('electron');-->
+  <!--ipcRenderer.on('message', function (event, text) {-->
+    <!--console.log('Message from updater:', text);-->
+  <!--});-->
+  <!--if (process.env.NODE_ENV === 'test') {-->
+    <!--require('babel-register')({-->
+      <!--presets: [-->
+        <!--['env', {-->
+          <!--targets: {-->
+            <!--electron: 1.6-->
+          <!--},-->
+        <!--}],-->
+        <!--'react',-->
+      <!--],-->
+    <!--});-->
+    <!--require('./src/index.js');-->
+  <!--}-->
+<!--</script>-->
+<script src="../../app/src/update.js"></script>
+</html>

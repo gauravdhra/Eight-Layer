@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+#logo img {
+    width: 92px !important;
+    height: 41px  !important;
+    margin-top: -9px  !important;
+    padding-left: 0px !important;
+    border-radius: 24px !important;
+
+}

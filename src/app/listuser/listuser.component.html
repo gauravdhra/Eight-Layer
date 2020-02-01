@@ -1,0 +1,156 @@
+<app-child-component></app-child-component>
+<div *ngIf="showSpinner">
+        <app-loading-spinner></app-loading-spinner>
+  </div>
+<!-- MAIN PANEL -->
+<div id="main" role="main">
+  <!-- MAIN CONTENT -->
+  <div id="content">
+      <div class="row">
+          <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+              <h1 class="page-title txt-color-blueDark"><i class="fa-fw fa fa-building-o"></i> Users</h1>
+          </div>
+      </div>
+      <section>
+          <!-- row -->
+          <div class="row">
+              <!-- NEW WIDGET START -->
+              <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <!-- widget content -->
+                  <div class="widget-body">
+                      <div class="row padding-10">
+                              <div class="table-responsive padding-10">
+                                  <table class="table table-bordered text-center">
+                                      <thead>
+                                          <tr>
+                                              <th>Email</th>
+                                              <th>User Type</th>
+                                              <th>Last Activity</th>
+                                              <th>Question Engagement Level</th>
+                                              <th>User Engagement Level</th>
+                                              <th>Actions</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody *ngFor="let Edata of editData?.data">
+
+                                          <tr>
+
+                                              <td>{{Edata.email}}</td>
+                                              <td>{{Edata.user_type}}</td>
+                                              <td>No Recent Activity</td>
+                                              <td>{{Edata.qelevel | number : '1.1-2'}}</td>
+                                              <td>{{Edata.userlevel | number : '1.1-2'}}</td>
+                                              <td>
+                                                <!-- <button (click) = "editUsers(Edata.user_name, Edata.userid)" type="button" class="btn btn-labeled btn-primary bg-color-blue" data-toggle="modal" data-target="#editData" >
+                                                  <span class="btn-label">
+                                                      <i class="fa fa-edit" ></i>
+                                                  </span>Edit
+                                              </button> -->
+                                              <i (click) = "editUsers(Edata.user_name, Edata.userid)" style="cursor: pointer" title="Edit Users" data-toggle="modal" data-target="#editData" class="fa fa-edit"></i>
+                                              <!-- <button (click) = "getUsers(Edata.userid, Edata.email, Edata.user_name)" type="button" class="btn btn-labeled btn-primary bg-color-red" data-toggle="modal" data-target="#deleteData">
+                                                  <span class="btn-label">
+                                                      <i class="fa fa-close"></i>
+                                                  </span>Delete
+                                              </button> -->
+                                              <i (click) = "getUsers(Edata.userid, Edata.email, Edata.user_name)" style="cursor: pointer" title="Delete Users" data-toggle="modal" data-target="#deleteData" class="fa fa-trash"></i>
+                                            </td>
+
+                                          </tr>
+
+                                      </tbody>
+                                  </table>
+                              </div>
+                              <div class="m-t-10 m-r-10 text-right btn-group-box">
+                                  <button type="button" class="btn btn-labeled btn-primary" (click) = "addpop()">
+                                      <span class="btn-label">
+                                          <i class="fa fa-plus"></i>
+                                      </span>Add
+                                  </button>
+
+                              </div>
+
+                      </div>
+
+                  </div>
+                  <!-- end widget content -->
+              </article>
+              <!-- WIDGET END -->
+          </div>
+          <!-- end row -->
+      </section>
+
+  </div>
+  <!-- END MAIN CONTENT -->
+</div>
+  <!--User: Add Popup -->
+  <div id="userAdd" class="modal" [ngStyle]="{'display':display}" role="dialog">
+      <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" (click) = "hideAddpop()">&times;</button>
+                  <h4 class="modal-title">User Add</h4>
+              </div>
+              <div class="modal-body">
+           User name:<input type="text" mdUsers #usersVal [ngModel]="users" class="form-control" placeholder="User Name"><br>
+           Email Id:<input type="text" mdUsers #usersEmail [ngModel]="usersId" class="form-control" placeholder="User Id">
+              </div>
+              <div [class.red]="redClassBool" class="ValidationMessage alert alert-danger">
+                <strong>Name and Email is mandatory!</strong>
+
+             </div>
+             <div [class.red1]="redClassBool1" class="ValidationMessage alert alert-danger">
+                <strong>User already Exist</strong>
+            </div>
+              <div class="modal-footer">
+                  <button type="button" (click) = "addUsers(usersVal.value, usersEmail.value)" class="btn btn-default">Add</button>
+              </div>
+          </div>
+
+      </div>
+  </div>
+  <!--User: Add Popup -->
+  <!--User: delete Popup -->
+  <div id="deleteData" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">User Add</h4>
+              </div>
+              <div class="modal-body">
+                  <p class="deletedName">Are you sure you want to delete {{currentName}}?</p>
+                  <input style="display: none" type="text" [(ngModel)]="userId" class="form-control" />
+                  <input style="display: none" type="text" [(ngModel)]="emailId" class="form-control" />
+              </div>
+              <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                  <button (click) = "deleteUsers()" type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
+              </div>
+          </div>
+
+      </div>
+  </div>
+  <!--User: delete Popup -->
+  <!--User: edit Popup -->
+  <div id="editData" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">User Add</h4>
+              </div>
+              <div class="modal-body">
+                User new name<input type="text" [(ngModel)]=" UserNewName" class="form-control" />
+                <input style="display: none" type="text" [(ngModel)]="currentUserId" class="form-control" />
+              </div>
+              <div class="modal-footer">
+                  <button (click) = "FinalEditData()" type="button" class="btn btn-default" data-dismiss="modal">edit</button>
+              </div>
+          </div>
+
+      </div>
+  </div>
+  <!--User: edit Popup -->

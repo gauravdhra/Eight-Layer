@@ -1,0 +1,57 @@
+.enterpriseDelete{
+
+
+    font-size: 150%;
+
+}
+/* .backdrop{ 
+    
+    
+    background-color:rgba(0,0,0,0.6);
+    
+    
+    position:fixed;
+    
+    
+    top:0;
+    
+    
+    left:0;
+    
+    
+    width:100%;
+    
+    
+    height:100vh;
+    
+    
+    } */
+
+    .ValidationMessage{
+
+        position: relative;
+        width: 50%;
+        top: 22px;
+
+
+    }
+.red{
+        
+            display: none;
+ }
+ #enterpriseAdd{
+
+
+    position: absolute;
+    top: 30%;
+    left: 32%;
+ }
+ .no-data-available {
+    text-align: center;
+  }
+
+/* .EntPanel
+{
+            display: none;
+
+} */

@@ -1,0 +1,97 @@
+<app-clientside></app-clientside>
+<div *ngIf="showSpinner">
+        <app-loading-spinner></app-loading-spinner>
+  </div>
+ <!-- MAIN PANEL -->
+ <div id="main" role="main">
+    <!-- MAIN CONTENT -->
+    <div id="content">
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+                <h1 class="page-title txt-color-blueDark"><i class="fa-fw fa fa-graduation-cap"></i> Lessons</h1>
+            </div>
+        </div>
+        <section>
+            <!-- row -->
+            <div class="row">
+                <!-- NEW WIDGET START -->
+                <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <!-- widget content -->
+                    <div class="widget-body">
+                        <div class="row padding-10">
+                            <div class="table-responsive padding-10">
+                                <table class="table table-bordered text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>Chapter Name</th>
+                                            <th>Lesson No.</th>
+                                            <th>Schedule Date</th>
+                                            <th>View</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngFor="let Ldata of lessonData?.data | ObjNgFor; let i=index">
+                                        <tr>
+                                            <td>{{Ldata.chapters_name}}</td>
+                                            <td>{{Ldata.lesson_no}}</td>
+                                            <td>{{Ldata.scheduled_date}}</td>
+                                            <!-- <td> <i style="cursor: pointer" class="fa fa-eye" (click) = "getChapterName(Ldata.chapters_name, Ldata.chapter_lesson)"></i></td> -->
+                                            <td><a data-toggle="modal" data-target="#editPopup"><i style="cursor: pointer" class="fa fa-eye" (click) = "getChapterName(Ldata.chapters_name, Ldata.chapter_lesson, Ldata.lesson_schedule_id,Ldata.chapter_code)" data-toggle="tooltip" title="View"></i></a></td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- <div class="col-md-12">
+                                <div class="black-trans-box m-t-20">
+                                    <h3 class="lesson-title">{{chapterName}}</h3>
+                                    <p>{{chapterLesson}}</p>
+
+
+                                </div>
+                            </div> -->
+                        </div>
+
+                    </div>
+                    <!-- end widget content -->
+                </article>
+                <!-- WIDGET END -->
+            </div>
+            <!-- end row -->
+        </section>
+
+    </div>
+    <!-- END MAIN CONTENT -->
+</div>
+<!-- END MAIN PANEL -->
+ <!--View: Popup -->
+ <div id="editPopup" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <h2>Do you really want to read lesson?</h2>
+                </div>
+                <div class="modal-footer">
+                    <button mdInput1 #yesButton (click) = "skipLessons(yesButton.value)" value="Complete" type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal">Yes</button>
+                    <button mdInput1 #noButton (click) = "skipLessons(noButton.value)" value="Skiped" type="button" class="btn btn-default m-l-10" data-dismiss="modal">No</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+     <!--View: Popup -->
+         <div class="modal lessonsData" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+                  <div class="modal-dialog" role="dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                            <button type="button" (click) = "lessonsDataPopUp()" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{chapterName}}</h4>
+                      </div>
+                      <div class="modal-body">
+                            <p>{{chapterLesson}}</p>
+                      </div>
+
+                </div>
+            </div>
+        </div>

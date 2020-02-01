@@ -1,0 +1,39 @@
+.modal-body {
+  min-height: 95px;
+  margin-left: 52px;
+}
+.rating {
+  border: none;
+  float:left;
+}
+.quizeDialog{
+
+  position: absolute !important;
+  top: 30% !important;
+  left: 30% !important
+}
+.modal-title{
+
+  color: white;
+  font-size: 19px !important;
+}
+.rating-image{
+  width: 35px;
+  height: 35px;
+  margin-left: 5px;
+}
+img:hover{
+  border: 2px solid #000;
+  border-radius: 20px;
+}
+.rating-image-click {
+  border: 3px solid #000;
+  border-radius: 20px;
+}
+.selected {
+  width: 35px;
+  height: 35px;
+  margin-left: 5px;
+  border: 2px solid gold;
+  border-radius: 20px;
+}

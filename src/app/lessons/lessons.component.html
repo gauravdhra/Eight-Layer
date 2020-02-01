@@ -1,0 +1,117 @@
+<app-child-component></app-child-component>
+<div *ngIf="showSpinner">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<!-- MAIN PANEL -->
+<div id="main" role="main">
+  <!-- MAIN CONTENT -->
+  <div id="content">
+    <div class="row">
+      <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+        <h1 class="page-title txt-color-blueDark"><i class="fa-fw fa fa-graduation-cap"></i> Lessons</h1>
+      </div>
+    </div>
+    <section>
+      <!-- row -->
+      <div class="row">
+        <!-- NEW WIDGET START -->
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <!-- widget content -->
+          <div class="widget-body">
+            <div class="row padding-10">
+              <div class="table-responsive padding-10">
+                <table class="table table-bordered text-center">
+                  <thead>
+                  <tr>
+                    <th></th>
+                    <th>Chapters</th>
+                    <th>Lesson No</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let chapter of chapterData?.data; let i=index">
+                    <td style="text-align: center">
+                      <input type="radio" name="user" [checked]="i === currentChapIndx"
+                             (click)="currentChapter(chapter.chapters_name, chapter.chapter_code, i)">
+                    </td>
+                    <td>{{chapter.chapters_name}}</td>
+                    <td>{{chapter.lesson_no}}</td>
+                  </tr>
+                  <tr *ngIf="showLesson" class="collapse rowi">
+                    <td></td>
+                    <td>
+                      <table class="table table-striped">
+                        <thead>
+                        <tr>
+                          <th>Lesson Name</th>
+                          <th>Lesson No.</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let lesson of lessonData?.data;">
+                          <td>{{lesson.lesson_name}}</td>
+                          <td>{{lesson.lesson_no}}</td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="m-t-10 m-r-10 text-right btn-group-box">
+                <button type="button" routerLink="/chapter" class="btn btn-labeled btn-primary">
+                                    <span class="btn-label">
+                                        <i class="fa fa-plus"></i>
+                                    </span>Chapters List
+                </button>
+                <button type="button" (click)="lessonList(chapter)" class="btn btn-labeled btn-primary">
+                                    <span class="btn-label">
+                                        <i class="fa fa-plus"></i>
+                                    </span>Lesson List
+                </button>
+                <!-- <button type="button" class="btn btn-labeled btn-primary bg-color-blue">
+                    <span class="btn-label">
+                        <i class="fa fa-edit"></i>
+                    </span>Edit
+                </button> -->
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- end widget content -->
+        </article>
+        <!-- WIDGET END -->
+      </div>
+      <!-- end row -->
+    </section>
+
+  </div>
+  <!-- END MAIN CONTENT -->
+</div>
+<!-- END MAIN PANEL -->
+
+
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="closeChapterPopup()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Chapters</h4>
+      </div>
+      <div class="modal-body">
+        <h4>Please Select Any Chapters</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="closeChapterPopup()">Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>

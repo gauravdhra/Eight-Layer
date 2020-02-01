@@ -1,0 +1,301 @@
+<app-clientside></app-clientside>
+<div *ngIf="showSpinner">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<!-- MAIN PANEL -->
+<div [hidden]="listDiv" class="pull-left">
+  <i class="fa fa-arrow-circle-left" title="Back" style="color: white; font-size: 24px; cursor: pointer"
+     (click)="backEvent()"></i>
+</div>
+<div id="main" role="main">
+  <!-- MAIN CONTENT -->
+
+  <div id="content">
+    <section>
+      <div class="row" *ngIf="listDiv">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="panel panel-primary">
+              <div class="panel-heading">Quiz List
+              </div>
+              <div class="panel-body">
+                <div class="table-responsive padding-10">
+                  <table class="table table-bordered text-left">
+                    <thead>
+                    <tr>
+                      <th>Chapter Name</th>
+                      <th>Quiz Duration</th>
+                      <th>Schedule Date</th>
+                      <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let quiz of quizeListData">
+                      <td>{{quiz.chapter_name}}</td>
+                      <td>{{quiz.duration}}</td>
+                      <td>{{quiz.scheduled_date}}</td>
+                      <td>
+                        <button class="btn btn-primary" (click)="showLesson(quiz.lessons_included[0])">Show Quiz
+                        </button>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <button (click) = "showMyPop()" data-toggle="modal" data-target="#QuizePopup"></button> -->
+        </div>
+        <!-- <h1>Selecting Number</h1>
+        <div>{{expression | json}}</div>
+        <input type="checkbox"  (change)="expression && expression.Option1=$event.target.checked ? true : undefiend" [ngModel]="expression?.Option1">
+        <input type="checkbox"   (change)="expression && expression.Option2=$event.target.checked ? true : undefiend" [ngModel]="expression?.Option2"> -->
+      </div>
+    </section>
+    <section>
+      <div class="row" *ngIf="!lessonDiv">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="panel panel-primary" *ngIf="!lessonSection">
+              <div class="panel-heading clearfix">
+                <h4 class="panel-title pull-left" style="padding-top: 7.5px;">Lesson</h4>
+                <div class="btn-group pull-right">
+                <span (click)="quizStart()"
+                      class="btn btn-header" style="cursor: pointer;" aria-hidden="true">Show Quiz</span>
+                </div>
+              </div>
+              <div class="panel-body">
+                <label style="color: black; font-size: 16px">Lesson Name:</label>
+                <p>{{lesson_data.chapters_name}}</p>
+                <label style="color: black; font-size: 16px">Lesson Detail:</label>
+                <p>{{lesson_data.chapter_lesson}}</p>
+
+                <hr>
+              </div>
+            </div>
+          </div>
+          <!-- <button (click) = "showMyPop()" data-toggle="modal" data-target="#QuizePopup"></button> -->
+        </div>
+        <!-- <h1>Selecting Number</h1>
+        <div>{{expression | json}}</div>
+        <input type="checkbox"  (change)="expression && expression.Option1=$event.target.checked ? true : undefiend" [ngModel]="expression?.Option1">
+        <input type="checkbox"   (change)="expression && expression.Option2=$event.target.checked ? true : undefiend" [ngModel]="expression?.Option2"> -->
+      </div>
+    </section>
+    <section>
+      <!-- row -->
+      <div class="row" *ngIf="!questionDiv">
+        <!-- NEW WIDGET START -->
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <!-- widget content -->
+          <div class="widget-body">
+            <div class="form padding-10">
+              <div class="row">
+                <div class="col-md-12">
+                  <div [class.question]="questionSection">
+                    <div [class.disable]="disableQuestion">
+                      <div class="black-trans-box">
+                        <div class="row">
+                          <div class="col-md-12"
+                               *ngFor="let Q of counter(Qlength) | paginate: { itemsPerPage: 1, currentPage: p }">
+                            <!-- <h4 class="m-b-10">Add Question</h4> -->
+                            <div class="form-group">
+                              <label>Question</label>
+                              <input readonly type="text" [ngModel]="myQuizquestion" class="form-control"
+                                     placeholder="Question"/>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <!-- <div *ngIf="isValid;then content else other_content"></div>
+
+                       <ng-template #content>content here...</ng-template>
+                       <ng-template #otherContent>other content here...</ng-template>  -->
+                        <div class="row answers-type-box">
+                          <div class="col-md-12 clearfix">
+                            <!-- {{right code start}} -->
+
+                            <!-- <ul *ngFor="let data of answerData | ObjNgFor; let i=index">
+
+                    <li><span><input (click) = "selectedAnswer(answerData[i], i)"  [checked]="i === myIndex"type="radio" name="answer" value="Answer"></span>&nbsp;&nbsp;{{answerData[i]}}</li>
+                  </ul> -->
+
+                            <!-- {{right code end}} -->
+
+                            <ul *ngFor="let data of answerData | ObjNgFor; let i=index">
+
+                              <ng-template #type1>
+                                <li>
+                                      <span>
+                                          <input
+                                            (click)="selectedAnswer(answerData[i], i)"
+                                            [checked]="i === myIndex"
+                                            type="radio" name="answer" value="Answer"
+                                            [disabled]="questionDisable === true">
+                                      </span>
+                                  &nbsp;&nbsp;{{answerData[i]}}
+                                </li>
+                              </ng-template>
+                              <ng-template #type2>
+                                <li>
+                                      <span>
+                                          <input name="type2"
+                                                 type="checkbox"
+                                                 [value]="ansChecked"
+                                                 (change)="selectedAnswertype2(answerData[i], $event, i)"
+                                                 [checked]="findIsChecked(answerData[i])"
+                                                 [disabled]="questionDisable === true">
+                                      </span>&nbsp;&nbsp;{{answerData[i]}}
+
+                                  <!-- <form [formGroup]="myForm">
+                                          <div *ngFor="let answerType2 of type2DynamicData">
+                                              <input type="checkbox" (change)="onChange(answerType2, $event.target.checked)"> {{answerType2}}<br>
+                                          </div>
+                                      </form> -->
+
+                                </li>
+                                <!-- <pre>Form values: {{myForm.value | json}}</pre> -->
+                              </ng-template>
+                              <div *ngIf="isValid;then type1 else type2"></div>
+                            </ul>
+                            <span *ngIf="!isValid" style="color: red">*Choose all answers that apply.</span>
+                            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+                            <hr>
+                            <label>Total Question:</label>
+                            {{Qlength}}
+                            <hr>
+                            <label>Attempt Question:</label>
+                            {{attemptQue}}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="m-t-10 text-right btn-group-box">
+                        <button (click)="submitAnswer()" type="button" class="btn btn-primary bg-color-blue">
+                          Submit
+                        </button>
+                      </div>
+                    </div>
+                    <div class="black-trans-box m-t-10" [ngStyle]="{'display':display}">
+                      <h4 class="m-b-10">{{message}}</h4>
+                      <hr>
+                      <h4 class="m-b-10">Explanation:</h4>
+                      &nbsp;&nbsp;<p>{{explanation}}</p>
+                      <div *ngIf="isFound">
+                        <h1>Answer:</h1>
+                        <ul *ngFor="let currect of currectAnswer">
+                          <li class="currectAnswer">{{currect}}</li>
+                        </ul>
+                      </div>
+                      <div class="m-t-10 text-right btn-group-box">
+                        <button (click)="questionNext()" type="button" class="btn btn-primary bg-color-blue">
+                          Next
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <!-- end widget content -->
+        </article>
+        <!-- WIDGET END -->
+      </div>
+      <!-- end row -->
+    </section>
+    <section>
+      <div class="row" *ngIf="userLevelDiv">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="panel panel-primary">
+              <div class="panel-heading">Quiz List
+              </div>
+              <div class="panel-body">
+                <div class="table-responsive padding-10">
+                  <table class="table table-bordered text-left">
+                    <thead>
+                    <tr>
+                      <th>Chapter Name</th>
+<!--                      <th>Schedule Date</th>-->
+                      <th>Quiz Level</th>
+                      <th>Status</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>{{lesson_data.chapters_name}}</td>
+<!--                      <td>{{quiz.scheduled_date}}</td>-->
+                      <td>{{userLevel}}</td>
+                      <td>{{currentStatus}}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <button (click) = "showMyPop()" data-toggle="modal" data-target="#QuizePopup"></button> -->
+        </div>
+        <!-- <h1>Selecting Number</h1>
+        <div>{{expression | json}}</div>
+        <input type="checkbox"  (change)="expression && expression.Option1=$event.target.checked ? true : undefiend" [ngModel]="expression?.Option1">
+        <input type="checkbox"   (change)="expression && expression.Option2=$event.target.checked ? true : undefiend" [ngModel]="expression?.Option2"> -->
+      </div>
+    </section>
+  </div>
+  <!-- END MAIN CONTENT -->
+</div>
+<!-- END MAIN PANEL -->
+<!--Lesson: Popup -->
+<!--<div id="lessonPopup" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    &lt;!&ndash; Modal content&ndash;&gt;
+    <div class="modal-content">
+      <div class="modal-header modal-header1">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{finalLessonDataName}}</h4>
+      </div>
+      <div class="modal-body">
+        <p>{{finalLessonData}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="close btn btn-primary bg-color-blue"
+                style="width: 80px; height: 30px; background-color: #0c2939 !important;" data-dismiss="modal">Got it
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>-->
+<!--Lesson: Popup -->
+<!--Quize: Popup -->
+<div [class.red]="redClassBool" role="dialog">
+  <div class="modal-dialog quizeDialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header quizeHeader">
+        <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+        <h4 class="modal-title"></h4>
+      </div>
+      <div class="modal-body quizeBody">
+        <p>Your quiz is completed....!!!</p>
+        <p>Your score level is <label class="userLevel">{{this.userLevel | number : '1.2-3'}}</label></p>
+      </div>
+      <div class="modal-footer">
+        <button (click)="hideQuizepopUp()" type="button" class="btn btn-dark">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!--Quize: Popup -->
+<div *ngIf="ratingModelShow">
+  <app-rating [rating]='rating' [itemId]='id' [comments]="comments" [submit]="submit"
+              (ratingClick)='ratingComponentClick($event)'></app-rating>
+</div>

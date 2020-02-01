@@ -1,0 +1,41 @@
+.btn-toggle {
+    margin: 0px 0 10px 0;
+    float: right;
+}
+.hide{
+
+    display: none
+}
+.show{
+
+    display: none
+
+}
+.ValidationMessage{
+    
+    /* position: absolute; */
+    width: 100%;
+    top: 88%;
+    
+    
+        }
+ .settingsValidations {
+            width: 32%;
+            top: 102%;
+            position: absolute;
+            left: 1%;
+        }
+      .csvButton  {
+            width: 100px;
+            margin-top: 10px;
+        }
+        .CsvNamePart{
+            display: none
+        }
+        .redMessage{
+            
+            
+                    color: white;
+                    font-size: 15px;
+            
+                   }

@@ -1,0 +1,104 @@
+<app-site-admin-side></app-site-admin-side>
+<div *ngIf="showSpinner">
+    <app-loading-spinner></app-loading-spinner>
+</div>
+<!-- <p>
+  site-admin-alert works!
+</p> -->
+<!-- MAIN PANEL -->
+<div id="main" role="main">
+  <!-- MAIN CONTENT -->
+  <div id="content">
+
+      <div class="row">
+          <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+              <h1 class="page-title txt-color-blueDark"><i class="fa-fw fa fa-bell"></i> Alerts</h1>
+          </div>
+
+      </div>
+
+      <section>
+          <!-- row -->
+          <div class="row">
+              <!-- NEW WIDGET START -->
+              <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <!-- Widget ID (each widget will need unique ID)-->
+                  <div class="jarviswidget jarviswidget-color-blueLight">
+                      <header>
+                          <span class="widget-icon"> <i class="fa fa-group"></i> </span>
+                          <h2>Non-Compliant Users</h2>
+                      </header>
+                      <!-- widget div-->
+                      <div>
+                          <!-- widget edit box -->
+                          <div class="jarviswidget-editbox">
+                              <!-- This area used as dropdown edit box -->
+                          </div>
+                          <!-- end widget edit box -->
+                          <!-- widget content -->
+                          <div class="widget-body">
+                              <div class="table-responsive">
+                                  <table class="table table-bordered text-center">
+                                      <thead>
+                                          <tr>
+                                              <th>Date</th>
+                                              <th>User Name</th>
+                                              <th>Status</th>
+                                              <th>Email</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody *ngIf="nonComplaintUser.data == 0; else fireForLoop">
+                                          <!-- <tr *ngIf="nonComplaintUser.data.length != 0">
+                                              <td>{{user.date_time | date}}</td>
+                                              <td>{{user.user_name}}</td>
+                                              <td>{{user.scheduled_status}}</td>
+                                              <td>{{user.email}}</td>
+                                          </tr> -->
+                                          <tr *ngIf="nonComplaintUser.data?.length != 0">
+                                                <td colspan="3" class="no-data-available">No data!</td>
+                                              </tr>
+
+                                      </tbody>
+                                      <ng-template #fireForLoop>
+                                             <tbody *ngFor="let user of nonComplaintUser?.data">
+                                                    <tr>
+                                                            <td>{{user.date_time | date}}</td>
+                                                            <td>{{user.user_name}}</td>
+                                                            <td>{{user.scheduled_status}}</td>
+                                                            <td>{{user.email}}</td>
+                                             </tr>
+                                        </tbody>
+                                         </ng-template>
+                                      <!-- <tbody>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody> -->
+
+                                  </table>
+
+                              </div>
+                          </div>
+                          <!-- end widget content -->
+                      </div>
+                      <!-- end widget div -->
+                  </div>
+                  <!-- end widget -->
+              </article>
+              <!-- WIDGET END -->
+
+
+
+
+          </div>
+
+          <!-- end row -->
+      </section>
+
+  </div>
+  <!-- END MAIN CONTENT -->
+</div>
+<!-- END MAIN PANEL -->

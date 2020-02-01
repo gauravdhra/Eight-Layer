@@ -1,0 +1,266 @@
+<app-site-admin-side></app-site-admin-side>
+<div *ngIf="showSpinner">
+    <app-loading-spinner></app-loading-spinner>
+</div>
+<!-- MAIN PANEL -->
+<div id="main" role="main">
+    <!-- MAIN CONTENT -->
+    <div id="content">
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+                <h1 class="page-title txt-color-blueDark">
+                    <i class="fa-fw fa fa-cog"></i> Config</h1>
+            </div>
+        </div>
+        <section>
+            <!-- row -->
+            <div class="row">
+                <!-- NEW WIDGET START -->
+                <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="widget-body">
+                        <ul class="nav nav-tabs bordered">
+                            <!-- <li class="active">
+                                <a href="#s1" data-toggle="tab">
+                                    <i class="fa fa-fw fa-lg fa-gear"></i> Settings</a>
+                            </li> -->
+                            <li>
+                                <a id="UserManagementTab" href="#s2" data-toggle="tab">
+                                    <i class="fa fa-fw fa-lg fa-user"></i> User Management</a>
+                            </li>
+                            <li>
+                                <a href="#s3" data-toggle="tab">
+                                    <i class="fa fa-fw fa-lg fa-lock"></i> Admin Accounts</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content padding-10">
+                            <div class="tab-pane fade in active" id="s1">
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label>*Set Chapter</label>
+                                            <select (change)="selectQuestionChapter($event.target.value)" class="form-control">
+                                                <option value="">Please Select</option>
+                                                <option *ngFor="let chepDataa of chapterDataforConfig?.data; let i=index" value={{chepDataa.chapter_code}} [selected]="chepDataa.chapter_code==myVariable">{{chepDataa.chapters_name}}-{{chepDataa.lesson_no}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label>*Set Question Amount</label>
+                                            <select (change)="selectQuestionAmount($event.target.value)" class="form-control">
+                                                <option value="">Please Select</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label>*Set Question Schedule (Monthly)</label>
+                                            <select (change)="selectQuestionSchedule($event.target.value)" class="form-control">
+                                                <option value="">Please Select</option>
+                                                <option value="3">March</option>
+                                                <option value="4">April</option>
+                                                <option value="5">May</option>
+                                                <option value="6">June</option>
+                                                <option value="7">July</option>
+                                                <option value="8">August</option>
+                                                <option value="9">September</option>
+                                                <option value="10">October</option>
+                                                <option value="11">November</option>
+                                                <option value="12">December</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                        <!-- <div [class.show]="successFiels" class="ValidationMessage alert alert-success">
+
+                                                    <strong>Lesson has been scheduled successfully</strong>
+
+                                                </div> -->
+
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+
+                                        <button class="mybutton" (click)="schedulLessons()" type="button" class="btn btn-labeled btn-primary">
+                                            <span class="btn-label">
+                                                <i class="fa fa-floppy-o"></i>
+                                            </span>Save
+                                        </button>
+
+
+                                    </div>
+                                    <div [class.hide]="blankFiels" class="settingsValidations alert alert-danger">
+
+                                                <strong>Fill all the fields</strong>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="s2">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="black-trans-box">
+                                            <div class="label-lg">Add User</div>
+                                            <div class="add-user">
+                                                    <div [class.hide]="isUser" class="ValidationMessage alert alert-success">
+
+                                                                <strong>User has been added successfully.</strong>
+
+                                                            </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>*Name</label>
+                                                            <input type="text" #newUsersName class="form-control" [ngModel]="usersName" placeholder="Login Name" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>*Email Address</label>
+                                                            <input type="text" #newUsersEmail class="form-control" [ngModel]="usersGmailId" placeholder="Email" />
+                                                        </div>
+                                                        <hr>
+                                                        <div [class.hide]="nameFiels" class="ValidationMessage alert alert-danger">
+
+                                                                    <strong>Fill all the fields</strong>
+
+                                                                </div>
+                                                        <div (click)="Adduser(newUsersName.value, newUsersEmail.value)" class="text-right">
+                                                            <button type="button" class="btn btn-labeled btn-success">
+                                                                <span class="btn-label">
+                                                                    <i class="fa fa-plus"></i>
+                                                                </span>Add User
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="black-trans-box">
+                                            <div class="label-lg">Bulk Add User</div>
+                                            <div class="add-user">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Download Template Here</label>
+                                                            <div>
+                                                                <a href="https://s3.amazonaws.com/ctf-set-password-temp/sample_users_csv_template.csv" class="btn btn-labeled btn-primary">
+                                                                    <span class="btn-label">
+                                                                        <i class="fa fa-download"></i>
+                                                                    </span>Download
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Upload completed template</label>
+                                                            <label> & you can only upload
+                                                                <strong>*CSV</strong> files.</label>
+                                                            <div class="smart-form">
+                                                                <label for="file" class="input input-file">
+                                                                    <div class="button">
+                                                                        <input type="file" accept=".csv" #fileImportInput (change)="fileChangeListener($event)">Browse</div>
+                                                                    <input type="text" placeholder="Include some files" readonly="">
+                                                                </label>
+                                                                <div class="CsvNamePart" id="CsvName">
+                                                                    <span>{{currentCsvName }}</span>
+                                                                    <button (click) = "csvSubmit()" type="button" class="btn btn-labeled btn-primary csvButton">
+                                                                            <span class="btn-label">
+                                                                                    <i class="fa fa-floppy-o"></i>
+                                                                            </span>Submit
+                                                                        </button>
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+                                                        <div [class.hide]="successFiels" class="ValidationMessage alert alert-success">
+
+                                                                    <strong>Uploaded successfully</strong>
+
+                                                                </div>
+                                                                <div [class.hide]="WrongFields" class="ValidationMessage alert alert-danger">
+
+                                                                            <strong>Wrong File Format</strong>
+
+                                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="s3">
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+
+                                            <label>*Users</label>
+
+                                            <select (change)="selectUserValue($event.target.value)" class="form-control">
+                                                <option value="">Please Select</option>
+                                                <option *ngFor="let userRole of userRoleData?.data; let i=index" value={{userRole.userid}} [selected]="userRole.userid==myUserId">{{userRole.user_name}} ({{userRole.user_type}})</option>
+                                            </select>
+                                        </div>
+                                        <div [class.hide]="isError" class="ValidationMessage alert alert-danger">
+
+                                                    <strong>First select user</strong>
+
+                                                </div>
+                                    </div>
+                                </div>
+                                <div class="m-t-10 text-right btn-group-box">
+                                    <button (click)="roleAssign()" type="button" class="btn btn-labeled btn-primary">
+                                        <span class="btn-label">
+                                            <i class="fa fa-pencil"></i>
+                                        </span>Assign site admin role
+                                    </button>
+                                </div>
+                                <div class="table-responsive padding-10">
+                                    <table class="table table-bordered text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>Login Name</th>
+                                                <th>Type</th>
+                                                <th>email</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngFor="let userStatus of userRoleData?.data; let i=index">
+                                            <tr>
+                                                <td>{{userStatus.user_name}}</td>
+                                                <td>{{userStatus.user_type}}</td>
+                                                <td>{{userStatus.email}}</td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- end widget content -->
+                </article>
+                <!-- WIDGET END -->
+            </div>
+            <!-- end row -->
+        </section>
+
+    </div>
+    <!-- END MAIN CONTENT -->
+</div>
+<!-- END MAIN PANEL -->

@@ -1,0 +1,328 @@
+<app-child-component></app-child-component>
+<div *ngIf="showSpinner">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<!-- MAIN PANEL -->
+<div id="main" role="main">
+  <!-- MAIN CONTENT -->
+  <div id="content">
+    <div class="row">
+      <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+        <h1 class="page-title txt-color-blueDark">
+          <i class="fa-fw fa fa-graduation-cap"></i> Chapters</h1>
+      </div>
+    </div>
+    <section>
+      <!-- row -->
+      <div class="row">
+        <!-- NEW WIDGET START -->
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <!-- widget content -->
+          <div class="widget-body">
+            <div class="row padding-10">
+              <div class="table-responsive padding-10">
+                <table class="table table-bordered text-left">
+                  <thead>
+                  <tr>
+                    <th></th>
+                    <th>Chapters</th>
+                    <th>Lesson Number</th>
+                    <th>Action</th>
+
+                  </tr>
+                  </thead>
+                  <tbody *ngFor="let chepData of chapterData?.data; let i=index">
+                  <tr>
+                    <td style="text-align: center">
+
+                      <input type="radio" name="user" [checked]="i === currentChapIndx"
+                             (click)="currentChapter(chepData.chapters_name, chepData.chapter_code, i)">
+
+
+                    </td>
+                    <td>{{chepData.chapters_name}}</td>
+                    <td>{{chepData.lesson_no}}</td>
+                    <td>
+                      <i title="Edit Chapter" style="cursor: pointer"
+                         (click)="editChapters(chepData.chapter_code, chepData.chapters_name)" data-toggle="modal"
+                         data-target="#chapterEdit"
+                         class="fa fa-edit"></i>
+                      &nbsp;
+                      <i title="Delete Chapter" style="cursor: pointer"
+                         (click)="getDeleteChepName(chepData.chapters_name, chepData.chapter_code)" data-toggle="modal"
+                         data-target="#chapterConfirmDelete" class="fa fa-trash"></i>
+                      &nbsp;
+                      <i title="Add Question" style="cursor: pointer"
+                         (click)="currentChapterId(chepData.question_type, chepData.chapter_code)"
+                         class="fa fa-plus"></i>
+
+                      <i title="View Lesson" style="cursor: pointer"
+                         (click)="viewLesson(chepData.chapter_code)"
+                         class="fa fa-eye"></i>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="m-t-10 m-r-10 text-right btn-group-box">
+                <button type="button" class="btn btn-labeled btn-primary" data-toggle="modal" data-target="#newChepter">
+                                    <span class="btn-label">
+                                        <i class="fa fa-plus"></i>
+                                    </span>New Chapter
+                </button>
+                <button (click)="questionList(chapter)" type="button" class="btn btn-labeled btn-primary">
+                                    <span class="btn-label">
+                                        <i class="fa fa-list" aria-hidden="true"></i>
+                                    </span>Questions
+                </button>
+
+                <button (click)="onAddLesson(chapter,chaptersNameForQuestion)" type="button" class="btn btn-labeled btn-primary">
+                                    <span class="btn-label">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </span>Add Lesson
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+          <!-- end widget content -->
+        </article>
+        <!-- WIDGET END -->
+      </div>
+      <!-- end row -->
+    </section>
+
+  </div>
+  <!-- END MAIN CONTENT -->
+  <div id="newChepter" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"> New Chapter</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <!-- NEW WIDGET START -->
+            <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <!-- widget content -->
+              <div class="widget-body">
+                <div class="form padding-10">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="black-trans-box">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>Chapter Name</label>
+                              <input type="text" mdInput #chapNameVal [ngModel]="chapterName" class="form-control"
+                                     placeholder="Chapter Name">
+                            </div>
+                            <label>lesson Number</label>
+                            <input type="number" mdInput #lessonNumbercount [(ngModel)]="lessonNum" class="form-control"
+                                   placeholder="Lesson Number">
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <label>Lessons Detail</label>
+                            <div>
+                            <textarea mdInput #questionTypeValue [ngModel]="questionTypeVal" style="color: black;"
+                                      rows="5" cols="44" placeholder="Lessons"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div [class.red]="!redClassBool" class="ValidationMessage alert alert-danger errorMsg">
+                        <strong>Fill all the fields</strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end widget content -->
+            </article>
+            <!-- WIDGET END -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="text-right">
+            <button type="button" class="btn btn-success" data-dismiss="modal"
+                    (click)="addNewChapter(chapNameVal.value, questionTypeValue.value, lessonNum)">Submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--chapter: Edit Popup -->
+  <div id="chapterEdit" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"> Edit</h4>
+        </div>
+        <div class="modal-body">
+
+
+          <div class="row">
+            <!-- NEW WIDGET START -->
+            <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <!-- widget content -->
+              <div class="widget-body">
+                <div class="form padding-10">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="black-trans-box">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>Chapter Name</label>
+                              <input type="text" mdInput #editChapNameVal [ngModel]="editChapterName"
+                                     class="form-control" placeholder="Chapter Name">
+                              <input type="hidden" [ngModel]="editChaptersId">
+                            </div>
+                            <div class="form-group">
+                              <label>lesson Number</label>
+                              <input type="number" mdInput #lessonNumber [ngModel]="lessonNum" class="form-control"
+                                     placeholder="Lesson Number">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>Lessons</label>
+                              <div>
+                                <textarea mdInput #editChapterLessonVal [ngModel]="editChapterLessonValue"
+                                          style="color: black;" rows="5" cols="44" placeholder="Lessons"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end widget content -->
+            </article>
+            <!-- WIDGET END -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button (click)="editupdateData(editChapNameVal.value, editChapterLessonVal.value, lessonNumber.value)"
+                  type="button" class="btn btn-default"
+                  data-dismiss="modal">Update
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--delete Popup -->
+  <div id="chapterConfirmDelete" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Delete</h4>
+        </div>
+        <div class="modal-body">
+          <p class="enterpriseDelete">Are you sure you want to delete</p>
+          <input type="hidden" [(ngModel)]="DeleteChaptersID" class="form-control"/>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+          <button (click)="ChapterRemoveData()" type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" aria-label="Close" (click)="closeChapterPopup()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">Chapters</h4>
+        </div>
+        <div class="modal-body">
+          <h4>Please Select Any Chapters</h4>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" (click)="closeChapterPopup()">Close</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+
+  <div class="modal" role="dialog" [ngStyle]="{'display':lesson}">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" aria-label="Close" (click)="closeLessonPopup()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">Add Lesson</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div class="widget-body">
+                <div class="form padding-10">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="black-trans-box">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>Chapter Name</label>
+                              <input type="text" name="chapterName" #addLessonNameVal [ngModel]="chapterName" readonly class="form-control">
+                            </div>
+                            <label>lesson Number</label>
+                            <input type="number" #lessonNumbercount [ngModel]="lessonCount" class="form-control"
+                                   placeholder="Lesson Number">
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <label>Lessons</label>
+                            <div>
+                            <textarea #lessonDeatil [ngModel]="questionTypeVal" style="color: black;"
+                                       rows="5" cols="44" placeholder="Lessons"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div [class.red]="redClassBool" class="ValidationMessage alert alert-danger errorMsg">
+                        <strong>Fill all the fields</strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success bg-color-green" (click)="submitLesson(addLessonNameVal.value, lessonNumbercount.value, lessonDeatil.value)">Save</button>
+          <button type="button" class="btn btn-default" (click)="closeLessonPopup()">Close</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+
+  <!-- /.modal !-->
+</div>

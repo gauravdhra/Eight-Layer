@@ -1,0 +1,410 @@
+<app-child-component>
+</app-child-component>
+<div *ngIf="showSpinner">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<!-- MAIN PANEL -->
+<div id="main" role="main">
+  <!-- MAIN CONTENT -->
+  <div id="content">
+    <div class="row">
+      <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+        <h1 class="page-title txt-color-blueDark">
+          <i class="fa-fw fa fa-users"></i> Enterprises </h1>
+      </div>
+    </div>
+    <section>
+      <!-- row -->
+      <div class="row">
+        <!-- NEW WIDGET START -->
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <!-- widget content -->
+          <div class="widget-body">
+            <ul class="nav nav-tabs bordered">
+              <li class="active">
+                <a href="#s1" data-toggle="tab">
+                  <i class="fa fa-fw fa-lg fa-building-o"></i> Enterprises</a>
+              </li>
+              <li>
+                <a href="#s2" data-toggle="tab">
+                  <i class="fa fa-fw fa-lg fa-clock-o"></i> Free-Tier</a>
+              </li>
+            </ul>
+            <div class="tab-content padding-10">
+              <div class="tab-pane fade in active" id="s1">
+                <div class="table-responsive padding-10 table-vscroll">
+                  <table class="table table-bordered text-left">
+                    <thead>
+                    <tr>
+                      <th></th>
+                      <th>Enterprises</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>No. of Question</th>
+                      <th>Maturity Level</th>
+                      <th>Actions</th>
+                    </tr>
+
+                    </thead>
+                    <tbody *ngFor="let Edata of Edatas?.data; let i=index">
+                    <!-- <tr *ngIf="Edatas.data.length == 0">
+                            <td colspan="3" class="no-data-available">No data!</td>
+                </tr> -->
+                    <tr>
+                      <!-- <td (click) = "editRemove(Edata.entid)"><input type="radio" name="gender"></td> -->
+                      <td style="text-align: center">
+                        <!-- <input type="radio" name="user" [(ngModel)]="currentInd" [checked]="i === currentInd" (click) = "usersId(Edata.entname, Edata.entid, i)">-->
+                        <input type="radio" name="user" [checked]="i === myIndex"
+                               (click)="usersId(Edata.entname, Edata.entid,i)">
+
+                      </td>
+                      <td>{{Edata.entname}}</td>
+                      <td>{{Edata.start_date}}</td>
+                      <td>{{Edata.end_date}}</td>
+                      <td>{{Edata.no_of_question}}</td>
+                      <td>12</td>
+                      <td>
+                        <i title="Edit Enterprise" style="cursor:pointer" data-toggle="modal"
+                           data-target="#enterpriseEdit" (click)="edit(Edata.entid)" class="fa fa-edit"></i>
+                        <i title="Delete Enterprise" style="cursor:pointer" data-toggle="modal"
+                           data-target="#confirmDelete" (click)="getDeleteId(Edata.entid, Edata.entname)"
+                           class="fa fa-trash"></i>
+                      </td>
+                    </tr>
+
+                    </tbody>
+                  </table>
+
+                </div>
+                <div class="m-t-10 m-r-10 text-right btn-group-box">
+                  <button type="button" (click)="ent()" class="btn btn-labeled btn-primary">
+                                        <span class="btn-label">
+                                            <i class="fa fa-plus"></i>
+                                        </span>Add
+                  </button>
+
+                  <button type="button" (click)="listFun(data)" routerLink="/listuser"
+                          class="btn btn-labeled btn-primary bg-color-blueLight">
+                                        <span class="btn-label">
+                                            <i class="fa fa-list"></i>
+                                        </span>List Users
+                  </button>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="s2">
+                <div class="table-responsive padding-10">
+                  <table class="table table-bordered text-center">
+                    <thead>
+                    <tr>
+                      <th></th>
+                      <th>Login Name</th>
+                      <th>Email</th>
+                      <th>Start Date</th>
+                      <th>Last Active</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>
+                        <!-- <div class="checkbox checkbox-primary">
+                                <input type="checkbox" /><label></label>
+                            </div> -->
+                        <input type="radio" name="user"/>
+                      </td>
+                      <td>John Doe</td>
+                      <td>abc@gmail.com</td>
+                      <td>19-02-2017</td>
+                      <td>19-02-2017</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <!-- <div class="checkbox checkbox-primary">
+                                <input type="checkbox" /><label></label>
+                            </div> -->
+                        <input type="radio" name="user"/>
+                      </td>
+                      <td>John Doe</td>
+                      <td>abc@gmail.com</td>
+                      <td>19-02-2017</td>
+                      <td>19-02-2017</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <!-- <div class="checkbox checkbox-primary">
+                                <input type="checkbox" /><label></label>
+                            </div> -->
+                        <input type="radio" name="user"/>
+                      </td>
+                      <td>John Doe</td>
+                      <td>abc@gmail.com</td>
+                      <td>19-02-2017</td>
+                      <td>19-02-2017</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <!-- <div class="checkbox checkbox-primary">
+                                <input type="checkbox" /><label></label>
+                            </div> -->
+                        <input type="radio" name="user"/>
+                      </td>
+                      <td>John Doe</td>
+                      <td>abc@gmail.com</td>
+                      <td>19-02-2017</td>
+                      <td>19-02-2017</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <!-- <div class="checkbox checkbox-primary">
+                                <input type="checkbox" /><label></label>
+                            </div> -->
+                        <input type="radio" name="user"/>
+                      </td>
+                      <td>John Doe</td>
+                      <td>abc@gmail.com</td>
+                      <td>19-02-2017</td>
+                      <td>19-02-2017</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <!-- <div class="checkbox checkbox-primary">
+                                <input type="checkbox" /><label></label>
+                            </div> -->
+                        <input type="radio" name="user"/>
+                      </td>
+                      <td>John Doe</td>
+                      <td>abc@gmail.com</td>
+                      <td>19-02-2017</td>
+                      <td>19-02-2017</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="m-t-10 m-r-10 text-right btn-group-box">
+                  <button title="Add Enterprise" type="button" class="btn btn-labeled btn-primary" data-toggle="modal"
+                          data-target="#freetierAdd">
+                                        <span class="btn-label">
+                                            <i class="fa fa-plus"></i>
+                                        </span>Add
+                  </button>
+                  <button title="Edit Enterprise" type="button" class="btn btn-labeled btn-primary bg-color-blue"
+                          data-toggle="modal" data-target="#freetierEdit">
+                                        <span class="btn-label">
+                                            <i class="fa fa-edit"></i>
+                                        </span>Edit
+                  </button>
+                  <button title="Delete Enterprise" type="button"
+                          class="btn btn-labeled btn-primary bg-color-blueLight">
+                                        <span class="btn-label">
+                                            <i class="fa fa-close"></i>
+                                        </span>Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <!-- end widget content -->
+        </article>
+        <!-- WIDGET END -->
+      </div>
+      <!-- end row -->
+    </section>
+
+  </div>
+  <!-- END MAIN CONTENT -->
+</div>
+<!--Enterprise: Add Popup -->
+<div class="modal" tabindex="-1" [ngStyle]="{'display':display1}" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button id="closeTrigger" (click)="entClose()" type="button" class="close">&times;</button>
+        <h4 class="modal-title">Add Enterprise</h4>
+      </div>
+      <div class="modal-body">
+
+        <!-- Enterprise-Name: <input type="text" [(ngModel)]="enterPriseText" class="form-control" placeholder="Username" /> -->
+        <label>Enterprise Name</label>
+        <input type="text" mdInput #inputVal [(ngModel)]="enterpriseText" class="form-control"
+               placeholder="Enterprise Name">
+        <label>No. of Question</label>
+        <input type="number" mdInput #inputQueVal [(ngModel)]="no_of_question" class="form-control"
+               placeholder="No. of Question">
+        <div class="row">
+          <div class="col-sm-6 col-xs-6">
+            <div class="form-group">
+              <label>From Date</label>
+
+              <input class="form-control" [(ngModel)]="fromDate" type="date" name="startDate"/>
+            </div>
+          </div>
+          <div class="col-sm-6 col-xs-6">
+            <div class="form-group">
+              <label>To Date</label>
+              <input class="form-control" [(ngModel)]="toDate" type="date" name="toDate"/>
+            </div>
+          </div>
+          <div [class.red]="redClassBool" class="ValidationMessage alert alert-danger">
+            <strong>Name is mandatory!</strong>
+
+          </div>
+          <div class="modal-footer">
+
+            <button (click)="newInputValue(inputVal.value, inputQueVal.value)" type="button" class="btn btn-default">
+              Add
+            </button>
+            <button (click)="entClose()" type="button" class="btn btn-default">Cancel</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Enterprise: Add Popup -->
+<!--Enterprise: Edit Popup -->
+<div id="enterpriseEdit" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"> Edit Enterprise</h4>
+      </div>
+      <div class="modal-body">
+        <!-- New Enterprise-Name:<input type="text" mdInput #editInputVal [ngModel]="editNewInput" class="form-control" placeholder="Enterprise-Name"> -->
+
+        <!-- <div class="col-18 col-md-12"> -->
+
+
+        <!-- <div class="row"> -->
+        <div>
+          <label>Enterprise-Name</label>
+          <input type="text" [(ngModel)]="newEntName" class="form-control"/>
+          <label>No. of Question</label>
+          <input type="number" [(ngModel)]="newQueValue" class="form-control"/>
+          <label> Start-date</label>
+          <input type="date" [(ngModel)]="newstartDate" class="form-control" />
+          <label> End-date</label>
+          <input type="date" [(ngModel)]="newEndDate" class="form-control" />
+          <input style="display: none" type="text" [(ngModel)]="currentId" class="form-control"/>
+        </div>
+        <!-- <div class="col-6 col-lg-4"> -->
+        <!-- <span>License</span> -->
+        <!-- Rate<input type="text" [(ngModel)]="rate" class="form-control" /> -->
+        <!-- Enter New userPoolId<input type="text" [(ngModel)]="userPoolId" class="form-control" placeholder="Enter New Enterprise-Name" /> -->
+        <!-- activeUserCount<input type="text" [(ngModel)]="activeUserCount" class="form-control" /> -->
+        <!-- licenseCount<input type="text" [(ngModel)]="licenseCount" class="form-control" /> -->
+        <!-- </div> -->
+        <!-- <div class="col-6 col-lg-4"> -->
+        <!-- <span>Attributes</span> -->
+
+        <!-- maturity-Level<input type="text" [(ngModel)]="maturityLevel" class="form-control" /> -->
+
+        <!-- </div> -->
+        <!-- <div class="col-6 col-lg-4"> -->
+        <!-- <span>Config</span> -->
+        <!-- Focused-Lesson<input type="text" [(ngModel)]="focusedLesson" class="form-control" />
+                                Enter New schedule<input type="text" [(ngModel)]="schedule" class="form-control" />
+                                QuestionAmt<input type="text" [(ngModel)]="questionAmt" class="form-control" />
+                                <br> -->
+        <!-- </div> -->
+        <!--/span-->
+        <!-- </div> -->
+        <!--/row-->
+        <!-- </div> -->
+        <!--/span-->
+      </div>
+      <div class="modal-footer">
+        <button (click)="updateData()" type="button" class="btn btn-default" data-dismiss="modal">Update</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!--Enterprice: Edit Popup -->
+<!--Free-Tier: Add Popup -->
+<div id="freetierAdd" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"> Add</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!--Free-Tier: Add Popup -->
+<!--Free-Tier: Edit Popup -->
+<div id="freetierEdit" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"> Edit</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!--delete Popup -->
+<div id="confirmDelete" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Delete Enterprise</h4>
+      </div>
+      <div class="modal-body">
+        <p class="enterpriseDelete">Are you sure you want to delete {{entDeleteName}}?</p>
+        <input style="display: none" type="text" [(ngModel)]="deleteId" class="form-control"/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        <button (click)="removeData()" type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!--alert Popup -->
+<div class="backdrop" [ngStyle]="{'display':display}"></div>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Enterprise</h4>
+      </div>
+      <div class="modal-body">
+        <p>Please Select Any Enterprise</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="onCloseHandled()">Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal !-->

@@ -1,0 +1,25 @@
+<service>
+	<id>eightlayerappservice.exe</id>
+	<name>EightLayerApp Service</name>
+	<description>The nodejs.org example web server.</description>
+	<executable>C:\Users\abhik\Desktop\EightLayerApp\EightLayerApp\app\node_modules\electron\dist\electron.exe</executable>
+	<logmode>rotate</logmode>
+	<argument>--harmony</argument>
+	<argument>C:\Users\abhik\Desktop\EightLayerApp\EightLayerApp\app\node_modules\node-windows\lib\wrapper.js</argument>
+	<argument>--file</argument>
+	<argument>C:\Users\abhik\Desktop\EightLayerApp\EightLayerApp\app\server\eightLayerAppService.js</argument>
+	<argument>--log</argument>
+	<argument>EightLayerApp Service wrapper</argument>
+	<argument>--grow</argument>
+	<argument>0.25</argument>
+	<argument>--wait</argument>
+	<argument>1</argument>
+	<argument>--maxrestarts</argument>
+	<argument>3</argument>
+	<argument>--abortonerror</argument>
+	<argument>n</argument>
+	<argument>--stopparentfirst</argument>
+	<argument>undefined</argument>
+	<stoptimeout>30sec</stoptimeout>
+	<workingdirectory>C:\Users\abhik\Desktop\EightLayerApp\EightLayerApp\app</workingdirectory>
+</service>

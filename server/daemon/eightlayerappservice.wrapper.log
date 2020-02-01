@@ -1,0 +1,39 @@
+2018-08-14 09:29:08 - Starting C:\Users\abhik\Desktop\EightLayerApp\EightLayerApp\app\node_modules\electron\dist\electron.exe  --harmony C:\Users\abhik\Desktop\EightLayerApp\EightLayerApp\app\node_modules\node-windows\lib\wrapper.js --file C:\Users\abhik\Desktop\EightLayerApp\EightLayerApp\app\server\eightLayerAppService.js --log "EightLayerApp Service wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2018-08-14 09:29:09 - Started 4172
+2018-08-14 10:52:30 - Stopping eightlayerappservice.exe
+2018-08-14 10:52:30 - ProcessKill 4172
+2018-08-14 10:52:32 - Stopping process 4172
+2018-08-14 10:52:32 - Send SIGINT 4172
+2018-08-14 10:52:33 - SIGINT to 4172 failed - Killing as fallback
+2018-08-14 10:52:33 - Finished eightlayerappservice.exe
+2018-08-15 09:15:36 - Starting C:\Users\abhik\Desktop\EightLayerApp\EightLayerApp\app\node_modules\electron\dist\electron.exe  --harmony C:\Users\abhik\Desktop\EightLayerApp\EightLayerApp\app\node_modules\node-windows\lib\wrapper.js --file C:\Users\abhik\Desktop\EightLayerApp\EightLayerApp\app\server\eightLayerAppService.js --log "EightLayerApp Service wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2018-08-15 09:15:36 - Started 5428
+2018-08-15 13:44:01 - Starting C:\Users\abhik\Desktop\EightLayerApp\EightLayerApp\app\node_modules\electron\dist\electron.exe  --harmony C:\Users\abhik\Desktop\EightLayerApp\EightLayerApp\app\node_modules\node-windows\lib\wrapper.js --file C:\Users\abhik\Desktop\EightLayerApp\EightLayerApp\app\server\eightLayerAppService.js --log "EightLayerApp Service wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2018-08-15 13:44:03 - Started 5684
+2018-08-15 13:51:03 - Stopping eightlayerappservice.exe
+2018-08-15 13:51:03 - ProcessKill 5684
+2018-08-15 13:51:06 - Shutdown exception
+Message:A system shutdown is in progress. (Exception from HRESULT: 0x8007045B)
+Stacktrace:   at System.Runtime.InteropServices.Marshal.ThrowExceptionForHRInternal(Int32 errorCode, IntPtr errorInfo)
+   at System.Management.ManagementScope.InitializeGuts(Object o)
+   at System.Management.ManagementScope.Initialize()
+   at System.Management.ManagementObjectSearcher.Initialize()
+   at System.Management.ManagementObjectSearcher.Get()
+   at winsw.WrapperService.GetChildPids(Int32 pid)
+   at winsw.WrapperService.StopProcessAndChildren(Int32 pid)
+   at winsw.WrapperService.StopIt()
+   at winsw.WrapperService.OnShutdown()
+2018-08-15 13:52:35 - Starting C:\Users\abhik\Desktop\EightLayerApp\EightLayerApp\app\node_modules\electron\dist\electron.exe  --harmony C:\Users\abhik\Desktop\EightLayerApp\EightLayerApp\app\node_modules\node-windows\lib\wrapper.js --file C:\Users\abhik\Desktop\EightLayerApp\EightLayerApp\app\server\eightLayerAppService.js --log "EightLayerApp Service wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2018-08-15 13:52:37 - Started 776
+2018-08-16 09:24:58 - Starting C:\Users\abhik\Desktop\EightLayerApp\EightLayerApp\app\node_modules\electron\dist\electron.exe  --harmony C:\Users\abhik\Desktop\EightLayerApp\EightLayerApp\app\node_modules\node-windows\lib\wrapper.js --file C:\Users\abhik\Desktop\EightLayerApp\EightLayerApp\app\server\eightLayerAppService.js --log "EightLayerApp Service wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2018-08-16 09:24:59 - Started 5788
+2018-08-17 09:20:51 - Starting C:\Users\abhik\Desktop\EightLayerApp\EightLayerApp\app\node_modules\electron\dist\electron.exe  --harmony C:\Users\abhik\Desktop\EightLayerApp\EightLayerApp\app\node_modules\node-windows\lib\wrapper.js --file C:\Users\abhik\Desktop\EightLayerApp\EightLayerApp\app\server\eightLayerAppService.js --log "EightLayerApp Service wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2018-08-17 09:20:53 - Started 5776
+2018-08-17 14:05:59 - Starting C:\Users\abhik\Desktop\EightLayerApp\EightLayerApp\app\node_modules\electron\dist\electron.exe  --harmony C:\Users\abhik\Desktop\EightLayerApp\EightLayerApp\app\node_modules\node-windows\lib\wrapper.js --file C:\Users\abhik\Desktop\EightLayerApp\EightLayerApp\app\server\eightLayerAppService.js --log "EightLayerApp Service wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2018-08-17 14:05:59 - Started 5648
+2018-08-17 14:31:30 - Stopping eightlayerappservice.exe
+2018-08-17 14:31:30 - ProcessKill 5648
+2018-08-17 14:31:30 - Stopping process 5648
+2018-08-17 14:31:30 - Send SIGINT 5648
+2018-08-17 14:31:31 - SIGINT to 5648 failed - Killing as fallback
+2018-08-17 14:31:31 - Finished eightlayerappservice.exe

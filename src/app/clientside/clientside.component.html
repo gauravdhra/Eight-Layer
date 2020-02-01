@@ -1,0 +1,103 @@
+<!-- <p>
+  clientside works!
+</p> -->
+<div *ngIf="showSpinner">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<header id="header">
+
+  <!-- <div id="logo-group">
+
+       <span id="logo"> <img src="assets/img/3.jpg" alt="Eight Layer"> </span>
+
+   </div>-->
+  <div class="project-context hidden-xs">
+    <span class="project-selector">{{organationName}}</span>
+  </div>
+
+  <!-- pulled right: nav area -->
+  <div class="pull-right">
+
+
+    <!-- <div id="hide-menu" class="btn-header pull-right">
+       <span> <a href="javascript:void(0);"  data-action="toggleMenu" title="Collapse Menu"><i class="fa fa-reorder"></i></a> </span>
+     </div>-->
+
+    <div class="pull-right login-dropdown transparent">
+      <a href="javascript:void(0);" role="button" id="dropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true"
+         aria-expanded="false"><span class="fa fa-reorder"> </span></a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
+        <a routerLink="/" (click)="sessionStorage()" class="dropdown-item">Signout</a>
+      </div>
+    </div>
+    <!-- logout button -->
+    <div id="logout" class="login-dropdown transparent pull-right">
+      <a href="javascript:void(0);" style="cursor: default" id="dropdownMenuLink">{{userName}}</a>
+      <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+           <a routerLink="/" (click) = "sessionStorage()" class="dropdown-item">Signout</a>
+       </div>-->
+    </div>
+    <!-- end logout button -->
+
+    <!-- search mobile button (this is hidden till mobile view port) -->
+    <div id="search-mobile" class="btn-header transparent pull-right">
+      <span> <a href="javascript:void(0)" title="Search"><i class="fa fa-search"></i></a> </span>
+    </div>
+    <!-- end search mobile button -->
+
+    <!-- input: search field -->
+    <!-- <form class="header-search pull-right">
+        <input type="text" name="" placeholder="Search">
+        <button type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+        <a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
+    </form> -->
+    <!-- end input: search field -->
+  </div>
+  <!-- end pulled right: nav area -->
+</header>
+<!--<aside id="left-panel">-->
+
+
+<!--&lt;!&ndash; <div class="login-info">-->
+<!--<span id="logo"> <img src="assets/img/2.jpg" alt="Eight Layer"> </span>-->
+<!--</div> &ndash;&gt;-->
+<!--<div class="login-info">-->
+<!--<span>-->
+<!--<a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">-->
+<!--<img src="assets/img/avatars/sunny.png" alt="me" class="online" />-->
+<!--<span>-->
+<!--{{userName}}-->
+<!--</span>-->
+<!--</a>-->
+<!--</span>-->
+<!--</div>-->
+<!--<nav>-->
+<!--&lt;!&ndash; <ul id="sidePanelParent">-->
+<!--<li id='ClientLesson'>-->
+<!--<a routerLink="/ScheduledLesson"  routerLinkActive  = "panelActive"  title="Scheduled Lessons">-->
+<!--<i class="fa fa-lg fa-fw fa-graduation-cap"></i>-->
+<!--<span class="menu-item-parent">Scheduled Lessons</span>-->
+<!--</a>-->
+<!--</li>-->
+<!--<li id='Quiz'>-->
+<!--<a routerLink="/quiz" routerLinkActive  = "panelActive" title="Quiz">-->
+<!--<i class="fa fa-lg fa-fw fa-question-circle"></i>-->
+<!--<span class="menu-item-parent">Quiz</span>-->
+<!--</a>-->
+<!--</li>-->
+
+<!--</ul> &ndash;&gt;-->
+<!--</nav>-->
+<!--</aside>-->
+<div class="page-footer">
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-12">
+      <span class="txt-color-white lowerPositionSite">Copyright <span
+        class="hidden-xs"> - Eight Layer</span> © 2017-2018</span>
+    </div>
+  </div>
+
+</div>

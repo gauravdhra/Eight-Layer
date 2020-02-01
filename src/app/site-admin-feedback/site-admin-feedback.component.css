@@ -1,0 +1,25 @@
+.ValidationMessage{
+    
+    position: absolute;
+    /* width: 25%; */
+    top: 88%;
+    
+    
+        }
+        .hide{
+
+
+            display: none
+        }
+       .showDiv{
+
+        display: none
+
+       }
+       .redMessage{
+
+        color: white;
+        font-size: 15px;
+
+       }
+        

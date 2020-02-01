@@ -1,0 +1,172 @@
+<app-child-component></app-child-component>
+<div *ngIf="showSpinner">
+        <app-loading-spinner></app-loading-spinner>
+  </div>
+<!-- MAIN PANEL -->
+<div id="main" role="main">
+    <!-- MAIN CONTENT -->
+    <div id="content">
+        <div class="row">
+                <label>Select Question Type</label>
+                <div class="selectType">
+                        <select (change)="selectchangeforType($event.target.value)" class="form-control typesSelect">
+                          <option>Please Select</option>
+                          <option value="1">Type 1</option>
+                          <option value="2">Type 2</option>
+                          <!-- <option value="3">Type 3</option> -->
+                      </select>
+                    </div>
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+                <h1 class="page-title txt-color-blueDark"><i class="fa-fw fa fa-file-o"></i> Type 3</h1>
+            </div>
+        </div>
+        <section>
+            <!-- row -->
+            <div class="row">
+                <!-- NEW WIDGET START -->
+                <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <!-- widget content -->
+                    <div class="widget-body">
+                        <div class="form padding-10">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="black-trans-box">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Question</label>
+                                                    <input type="text" class="form-control" [(ngModel)]="myQuestion" placeholder="Question" />
+                                                    <label>inspired By</label>
+                                                    <input type="text" class="form-control" [(ngModel)]="myInspiredBy" placeholder="inspired by">
+                                                    <!-- <label>question Type</label> -->
+                                                    <!-- <select class="form-control" (change)="selectchangeforQuestion($event.target.value)">
+                                                            <option>Please Select</option>
+                                                            <option value="1">Type 1</option>
+                                                            <option value="2">Type 2</option>
+                                                            <option value="3">Type 3</option>
+                                                      </select> -->
+                                                      <label>question Level</label>
+                                                      <input type="number" class="form-control" [(ngModel)]="myQuestionLevel" placeholder="question level">
+                                                      
+                                                    <label>Answer Explaination</label>
+                                                    <textarea Answer Explaination="question_insights" [(ngModel)]="myExplaination" class="form-control"></textarea>
+                                                    <!-- <input type="hidden" [(ngModel)]="type3QuestionID"> -->
+                                                </div>
+                                                <button (click) = "saveMyQuestion()" type="button" class="btn btn-labeled btn-primary bg-color-blueLight">
+                                                        <span class="btn-label">
+                                                            <i class="fa fa-save"></i>
+                                                        </span>Save Question
+                                                    </button>
+                                            </div>
+                                            <div class="col-md-6">
+                                                
+                                                <!-- <div class="form-group m-t-5">
+                                                    <label> </label>
+                                                    <input type="file" name="img[]" class="file">
+                                                    <div class="input-group col-xs-12">
+                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
+                                                        <input type="text" class="form-control" disabled placeholder="Upload Image">
+                                                        <span class="input-group-btn">
+                                                    <button class="browse btn btn-primary" type="button">
+                                                        <i class="glyphicon glyphicon-search"></i> Browse</button>
+                                                    </span>
+                                                    </div>
+                                                </div> -->
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div [ngStyle]="{'display':display}" class="col-md-12 clearfix">
+                                                <!-- <label>{{type3QuestionID}} </label>
+                                                <label>{{accessToken}}</label>
+                                                <label>{{IncrementCount}}</label>  -->
+                                                
+                                                    
+                                                    <image-upload
+                                                     [url]="'https://36mxqyy77a.execute-api.us-east-1.amazonaws.com/dev/assets/questions/'+ type3QuestionID + '/options/'+ IncrementCount +''" 
+                                                     buttonCaption="Upload Your Answer"
+                                                     [headers]="{accesstoken: accessToken}"
+                                                     [class]="'customClassNew'"
+                                                     (uploadFinished)="onUploadFinished($event)"
+                                                     ></image-upload>
+                                                
+                                                <!-- <ul class="option-list inside">
+                                                    <li class="col-md-2 col-sm-6 col-xs-12">
+                                                        <div class="radio radio-primary">
+                                                            <input type="radio" name="r1" id="c1" />
+                                                            <label for="c1"><div class="img-option"></div></label>
+                                                        </div>
+                                                    </li>
+                                                    <li class="col-md-2 col-sm-6 col-xs-12">
+                                                        <div class="radio radio-primary">
+                                                            <input type="radio" name="r1" id="c2" />
+                                                            <label for="c2"><div class="img-option"></div></label>
+                                                        </div>
+                                                    </li>
+                                                    <li class="col-md-2 col-sm-6 col-xs-12">
+                                                        <div class="radio radio-primary">
+                                                            <input type="radio" name="r1" id="c3" />
+                                                            <label for="c3"><div class="img-option"></div></label>
+                                                        </div>
+                                                    </li>
+                                                    <li class="col-md-2 col-sm-6 col-xs-12">
+                                                        <div class="radio radio-primary">
+                                                            <input type="radio" name="r1" id="c4" />
+                                                            <label for="c4"><div class="img-option"></div></label>
+                                                        </div>
+                                                    </li>
+                                                    <li class="col-md-2 col-sm-6 col-xs-12">
+                                                        <div class="radio radio-primary">
+                                                            <input type="radio" name="r1" id="c5" />
+                                                            <label for="c5"><div class="img-option"></div></label>
+                                                        </div>
+                                                    </li>
+                                                </ul> -->
+                                            </div>
+                                        </div>
+                                        <!-- <button (click) = "saveMyQuestion()" type="button" class="btn btn-labeled btn-primary bg-color-blueLight">
+                                            <span class="btn-label">
+                                                <i class="fa fa-save"></i>
+                                            </span>Save 
+                                        </button> -->
+                                        <!-- <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Answer Explaination</label>
+                                                    <textarea class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                    <div class="m-t-10 text-right btn-group-box">
+                                 <!-- <button type="button" class="btn btn-labeled btn-primary" data-toggle="modal" data-target="#enterpriseAdd">
+                                    <span class="btn-label">
+                                        <i class="fa fa-plus"></i>
+                                    </span>Add Question
+                                </button>
+                                <button type="button" class="btn btn-labeled btn-primary bg-color-blue" data-toggle="modal" data-target="#enterpriseEdit">
+                                    <span class="btn-label">
+                                        <i class="fa fa-edit"></i>
+                                    </span>Edit
+                                </button>
+                                <button type="button" class="btn btn-labeled btn-primary bg-color-blueLight">
+                                    <span class="btn-label">
+                                        <i class="fa fa-save"></i>
+                                    </span>Save
+                                </button> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- end widget content -->
+                </article>
+                <!-- WIDGET END -->
+            </div>
+            <!-- end row -->
+        </section>
+
+    </div>
+    <!-- END MAIN CONTENT -->
+</div>
+<!-- END MAIN PANEL -->

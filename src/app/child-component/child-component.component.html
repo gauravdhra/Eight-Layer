@@ -1,0 +1,113 @@
+
+<header id="header">
+    <div id="logo-group">
+
+        <span id="logo"> <img src="assets/img/8-layer-logo-v3.png" alt="Eight Layer"> </span>
+
+    </div>
+    <div class="project-context hidden-xs">
+        <span class="project-selector">{{organationName}}</span>
+    </div>
+
+    <!-- pulled right: nav area -->
+    <div class="pull-right">
+       <!-- <div id="hide-menu" class="btn-header pull-right hidden-md hidden-lg">
+            <span> <a href="javascript:void(0);" data-action="toggleMenu" title="Collapse Menu"><i class="fa fa-reorder"></i></a> </span>
+        </div>-->
+
+      <div class="pull-right login-dropdown transparent">
+        <a href="javascript:void(0);" role="button" id="dropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true"
+           aria-expanded="false"><span class="fa fa-reorder"> </span></a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
+          <a routerLink="/" (click)="sessionStorage()" class="dropdown-item">Signout</a>
+        </div>
+      </div>
+
+
+      <!-- logout button -->
+        <div id="logout" class="login-dropdown transparent pull-right">
+            <a href="javascript:void(0);" style="cursor: default" id="dropdownMenuLink" >{{userName}}</a>
+            <!--<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a routerLink="/" (click) = "sessionStorage()" class="dropdown-item">Signout</a>
+            </div>-->
+        </div>
+        <!-- end logout button -->
+
+        <!-- search mobile button (this is hidden till mobile view port) -->
+        <div id="search-mobile" class="btn-header transparent pull-right">
+            <span> <a href="javascript:void(0)" title="Search"><i class="fa fa-search"></i></a> </span>
+        </div>
+        <!-- end search mobile button -->
+
+        <!-- input: search field -->
+        <!-- <form class="header-search pull-right">
+            <input type="text" name="" placeholder="Search">
+            <button type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+            <a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
+        </form> -->
+        <!-- end input: search field -->
+    </div>
+    <!-- end pulled right: nav area -->
+</header>
+<aside id="left-panel">
+
+
+
+          <!-- <div class="login-info">
+                <span id="logo"> <img src="assets/img/2.jpg" alt="Eight Layer"> </span>
+            </div> -->
+            <div class="login-info">
+              <span>
+              <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
+                  <img src="assets/img/avatars/sunny.png" alt="me" class="online" />
+                  <span>
+                     {{userName}}
+                  </span>
+              </a>
+              </span>
+          </div>
+          <nav>
+              <ul id="sidePanelParent">
+                  <li id='home'>
+                      <a routerLink="/SuperAdmin" routerLinkActive  ="panelActive" title="Home">
+                              <i class="fa fa-lg fa-fw fa-home"></i>
+                              <span class="menu-item-parent">Home</span>
+                      </a>
+                  </li>
+                  <li id='Clients'>
+                      <a routerLink="/client" routerLinkActive  = "panelActive" title="Clients">
+                              <i class="fa fa-lg fa-fw fa-users"></i>
+                              <span class="menu-item-parent">Clients</span>
+                      </a>
+                  </li>
+                  <li id='Lessons'>
+                      <a routerLink="/chapter" routerLinkActive  = "panelActive"  title="Lessons">
+                              <i class="fa fa-lg fa-fw fa fa-book"></i>
+                              <span class="menu-item-parent">Chapters</span>
+                      </a>
+                  </li>
+                <li id='Schedules'>
+                  <a routerLink="/schedule" routerLinkActive  = "panelActive"  title="Schedules">
+                    <i class="fa fa-lg fa-fw fa fa-calendar"></i>
+                    <span class="menu-item-parent">Schedules</span>
+                  </a>
+                </li>
+                  <!-- <li id='Reports'>
+                      <a routerLink="/reports" routerLinkActive  = "panelActive" title="Reports">
+                              <i class="fa fa-lg fa-fw fa-file-text"></i>
+                              <span class="menu-item-parent">Reports</span>
+                      </a>
+                  </li> -->
+              </ul>
+          </nav>
+      </aside>
+      <div class="page-footer">
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <span class="txt-color-white lowerPosition">Copyright <span class="hidden-xs"> - Eight Layer</span> © 2017-2018</span>
+        </div>
+    </div>
+</div>
